@@ -1,0 +1,116 @@
+from random import randint
+
+#Defining Grid Terms
+grid = []
+row = []
+back = ' '
+
+#Defining Functions
+def random_row(grid):
+    return randint(0, len(grid) - 1)
+
+def random_col(grid):
+    return randint(0, len(grid[0]) - 1)
+
+def print_grid(grid):
+    for row in grid:
+        print( " ". join(row))
+
+
+
+#Greeting 
+print('Welcome to the Treasure Hunt!') 
+
+#User Input/Difficulty Level - Ryan
+difficulty =input('What difficulty level would you like? (enter: "E" for easy (3x3), "M" for Medium (4x4), "H" for Hard (5x5)')
+
+#User error - Ryan
+while difficulty not in ('E', 'M', 'H'):
+    print('Game difficulty not possible.')
+    difficulty = input('What difficulty level would you like? (enter: "E" for easy (3x3), "M" for Medium (4x4), "H" for Hard (5x5)')
+    
+#Determining Grid Size - Ryan
+#Easy mode
+if difficulty == 'E':
+    width = 3
+if difficulty == 'E':
+    height = 3
+#Medium Mode
+if difficulty == 'M':
+    width = 4
+if difficulty == 'M':
+    height = 4
+#Hard Mode
+if difficulty == 'H':
+    width = 5
+if difficulty == 'H':
+    height = 5
+
+
+#Displaying Grid
+grid = []
+row = []
+back = ' ' 
+for i in range(width):
+    row.append(back)
+for i in range(height):
+    grid.append(row)
+
+for i in range (len(grid)):
+        print(grid[i])
+
+#Hide Treasure-Jacob
+def print_grid(grid):
+    for row in grid:
+        print( " ". join(row))
+
+print_grid(grid)
+
+
+Chest1_Row = random_row(grid)
+Chest1_Col = random_col(grid)
+grid[Chest1_Row][Chest1_Col] = "$"
+
+Chest2_Row = random_row(grid)
+Chest2_Col = random_col(grid)
+grid[Chest2_Row][Chest2_Col] = "$"
+
+Chest3_Row = random_row(grid)
+Chest3_Col = random_col(grid)
+grid[Chest3_Row][Chest3_Col] = "$"
+
+#User Guess/Loop - Graham
+
+ask_row = int(input("What row would you like to search?"))
+ask_col = int(input("What column would you like to search?"))
+
+
+guess = (ask_row, ask_col)
+treasure = (ask_row == Chest1_Row and ask_col == Chest1_Col)
+
+
+if ask_row == Chest1_Row and ask_col == Chest1_Col:
+    print("YES! You found a piece of treasure.")
+
+elif ask_row == Chest2_Row and ask_col == Chest2_Col:
+        print("YES! You found a piece of treasure.")
+
+elif ask_row == Chest3_Row and ask_col == Chest3_Col:
+        print("YES! You found a piece of treasure.")
+
+else:
+    grid[ask_row][ask_col] == ("X")
+    print("No treasure here!")
+
+
+#Game Results
+if guess == 0 and treasure != 3:
+    display_board(show_treasure=True)
+    print("Oh no! You only found %d"%treasure,"/3 treasures.")
+    print('')
+    print('Game Over')
+if treasure == 3:
+    display_board(board)
+    print('Congrats you can have all the gold!')
+    print('')
+    print('Game Over')
